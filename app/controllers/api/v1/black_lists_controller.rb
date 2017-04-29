@@ -17,7 +17,6 @@ class Api::V1::BlackListsController < Api::ApiApplicationController
       image_url = params[:image_url]
       face_id = SalesFaceDetector.convert_img_to_id(image_url)
     elsif params.keys.include?('image')
-      binding.pry
       captured_image = CapturedImage.create(content: params[:image])
       face_id = SalesFaceDetector.convert_img_to_id(captured_image.content.url)
       image_url = captured_image.content.url
