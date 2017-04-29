@@ -15,5 +15,7 @@ module NotificationReporter
     config.generators.stylesheets = false
     config.generators.javascripts = false
     config.generators.helper      = false
+
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
