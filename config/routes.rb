@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1, defaults: { format: :json } do
-      resources :captured_images, only: [:create]
+      resources :captured_images, only: [:create] do
+        member do get :check end
+      end
       resources :black_lists, only: [:create] do
          member do post :add end
       end
