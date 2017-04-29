@@ -1,5 +1,4 @@
 class CapturedImage < ApplicationRecord
-  mount_uploader :content, FaceImageUploader
-
   validates :content, presence: true
+  mount_uploader :content, FaceImageUploader
 end
