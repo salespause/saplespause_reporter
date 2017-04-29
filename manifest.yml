@@ -5,4 +5,4 @@ applications:
   instances: 1
   services:
   - salespause-reporter-mysql
-  command: bundle exec rake db:migrate && bundle exec rails s -p $PORT -e RAILS_ENV
+  command: bundle exec rake db:migrate && bundle exec rake db:seed &&abundle exec rails s -p $PORT -e RAILS_ENV
