@@ -1,0 +1,8 @@
+---
+applications:
+- name: notification-reporter
+  memory: 256M
+  instances: 1
+  services:
+  - salespause-reporter-mysql
+  command: bundle exec rake db:migrate && bundle exec rails s -p $PORT -e RAILS_ENV
