@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429072339) do
+ActiveRecord::Schema.define(version: 20170429224609) do
 
   create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 20170429072339) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["black_list_id"], name: "index_face_images_on_black_list_id", using: :btree
+  end
+
+  create_table "voice_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "text",       limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "word_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "voice_record_id", null: false
+    t.string   "word",            null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["voice_record_id"], name: "index_word_records_on_voice_record_id", using: :btree
   end
 
 end
