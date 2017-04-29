@@ -14,7 +14,7 @@ class Api::V1::CapturedImagesController < Api::ApiApplicationController
 
   def check
     @similarity_info = SalesFaceDetector.find_similar_face(@captured_image.face_id, @black_list.id)
-    @is_valid = SalesFaceDetector.is_sales(@similarity_info)
+    @is_sales = SalesFaceDetector.is_sales(@similarity_info)
   end
 
   private
