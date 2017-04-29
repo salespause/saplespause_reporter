@@ -1,9 +1,5 @@
-module SalesFaceDetectorAction
-  extend ActiveSupport::Concern
-
-  private
-
-  def convert_img_to_id(image_url)
+class SalesFaceDetector
+  def self.convert_img_to_id(image_url)
     #=== 画像をazure上でのidに変換する関数
     # @input <str> faceImgUrl: 画像のpath or url を渡す
     # @output <str> response.body[0][:faceId]: 登録されたfaceIDが帰ってくる. face listに突っ込んで永久かしないと、このidは24時間で消える
@@ -32,7 +28,7 @@ module SalesFaceDetectorAction
     end
   end
 
-  def create_face_list(face_list_id, list_name)
+  def self.create_face_list(face_list_id, list_name)
     #=== 検索に用いるfacelistを作成する関数
     # @input <str> faceListId: idを任意に作れる. このidをpathのお尻につけてpostすることでリストを作れる
     # @input <str> listName: 作るリストに名前作れる
@@ -56,7 +52,7 @@ module SalesFaceDetectorAction
     return face_list_id
   end
 
-  def add_face_to_list(image_url, face_list_id)
+  def self.add_face_to_list(image_url, face_list_id)
     #=== facelistに顔画像を追加する関数. 営業マンの顔を追加することを想定している
     # @input <str> faceImgUrl: faceImgUrl: 追加したい画像のpath or url を渡す
     # @input <str> faceListId: 画像を追加する対象のリストのid
@@ -80,7 +76,7 @@ module SalesFaceDetectorAction
     return response.body['persistedFaceId']
   end
 
-  def find_similar_face(face_id, face_list_id)
+  def self.find_similar_face(face_id, face_list_id)
     #=== facelistの中から、似ている顔を検索する関数
     # @input <str> faceId: 類似顔を検索する時のクエリ. convert_img_to_id()の返り値. 画像のidを表す.
     # @input <str> faceListId: 画像を追加する対象のリストのid. create_face_list()の返り値
@@ -106,7 +102,7 @@ module SalesFaceDetectorAction
     return eval(response.body)
   end
 
-  def is_sales(face_similar_list)
+  def self.is_sales(face_similar_list)
     mostSimilarFace = face_similar_list[0]
     confidence = mostSimilarFace[:confidence]
     if confidence > 0.5 then
