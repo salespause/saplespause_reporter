@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170429011358) do
+ActiveRecord::Schema.define(version: 20170429054812) do
+
+  create_table "black_list_captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "black_list_id",     null: false
+    t.integer "captured_image_id", null: false
+    t.index ["black_list_id"], name: "index_black_list_captured_images_on_black_list_id", using: :btree
+    t.index ["captured_image_id"], name: "index_black_list_captured_images_on_captured_image_id", using: :btree
+  end
+
+  create_table "black_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
+    t.integer  "home_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "captured_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
