@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       resources :black_lists, only: [:create] do
          member do post :add end
       end
-      resources :word_records, only: [:index, :create]
     end
   end
 end

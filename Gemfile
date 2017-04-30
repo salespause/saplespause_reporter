@@ -15,8 +15,6 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'config'
 gem 'fog'
-gem 'rjb'
-gem 'activerecord-import'
 
 group :development, :test do
   gem 'byebug', platform: :mri
